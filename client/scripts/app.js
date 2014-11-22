@@ -1,10 +1,11 @@
-    // server: 'http://127.0.0.1:3000/classes/chatterbox',
+// YOUR CODE HERE:
+
 var app;
 $(function() {
   app = {
 //TODO: The current 'addFriend' function just adds the class 'friend'
 //to all messages sent by the user
-    server: 'http://127.0.0.1:3000/classes/chatterbox',
+    server: '/classes/messages',
     username: 'anonymous',
     roomname: 'lobby',
     lastMessageId: 0,
@@ -59,10 +60,10 @@ $(function() {
         url: app.server,
         type: 'GET',
         contentType: 'application/json',
-        // data: { order: '-createdAt'},
+        data: { order: '-createdAt'},
         success: function(data) {
           console.log('chatterbox: Messages fetched');
-          console.log(data);
+
           // Don't bother if we have nothing to work with
           if (!data.results || !data.results.length) { return; }
 
@@ -112,7 +113,7 @@ $(function() {
       }
     },
     populateRooms: function(results) {
-      app.$roomSelect.html('<option value="__newRoom">New room...</option></select>');
+      app.$roomSelect.html('<option value="__newRoom">New room...</option><option value="" selected>Lobby</option></select>');
 
       if (results) {
         var rooms = {};
@@ -209,7 +210,6 @@ $(function() {
     },
     handleSubmit: function(evt) {
       var message = {
-        objectId: Math.floor(Math.random()*100),
         username: app.username,
         text: app.$message.val(),
         roomname: app.roomname || 'lobby'
@@ -222,7 +222,7 @@ $(function() {
     },
     startSpinner: function(){
       $('.spinner img').show();
-      $('form input[type=submit]').attr('disabled', "true");
+      $('form input[type=submit]').attr('disabled', null);
     },
 
     stopSpinner: function(){

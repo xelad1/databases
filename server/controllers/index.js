@@ -14,7 +14,16 @@ module.exports = {
 
     }, // a function which handles a get request for all messages
     post: function (req, res) {
+console.log('the request is: '+ req.body);
 
+      var data = req.body;
+
+
+      db.query('INSERT into messages (message) values("'+data.message+'")', function(err, rows, fields) {
+      if (err) throw err;
+
+    });
+      console.log('POST!!!! ')
 
 
     } // a function which handles posting a message to the database
