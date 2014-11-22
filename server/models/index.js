@@ -13,6 +13,10 @@ module.exports = {
     // Ditto as above.
     get: function () {},
     post: function () {}
+  },
+  something: {
+    get: function(){}
   }
+
 };
 

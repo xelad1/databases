@@ -41,13 +41,13 @@ Messages.sync().success(function() {
   /* This callback function is called once sync succeeds. */
 
   // now instantiate an object and save it:
-  var newMessage = Messages.build({username: "Jean Valjean", message:'Bonjour monde'});
+  var newMessage = Messages.build({ message:'Bonjour monde'});
   newMessage.save().success(function() {
 
     /* This callback function is called once saving succeeds. */
 
     // Retrieve objects from the database:
-    Messages.findAll({ where: {username: "Jean Valjean"} }).success(function(messages) {
+    Messages.findAll({ where: { message:'Bonjour monde'} }).success(function(messages) {
       // This function is called back with an array of matches.
       for (var i = 0; i < messages.length; i++) {
         console.log(messages[i].message + " exists");
